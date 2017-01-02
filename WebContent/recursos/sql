@@ -1,0 +1,54 @@
+create table aluno (
+id serial, 
+nome varchar(30) not null,
+matricula varchar(10) not null,
+dataNasc date not null,
+usuario varchar(10) not null,
+senha varchar(10) not null,
+primary key(id));
+
+
+insert into aluno (nome, matricula, dataNasc, usuario, senha) 
+values ('facada','2016021195','1992-06-20', 'abc', '123');
+select * from aluno
+
+create table avaliacao (
+id serial, 
+idAlunoAvaliado integer not null,
+comentario varchar(200),
+nota float not null, 
+primary key(id),
+foreign key (idAlunoAvaliado) references aluno(id)
+)
+
+insert into avaliacao (idAlunoAvaliado, comentario, nota) 
+values (1,'mas q lindeza',30.5);
+select * from avaliacao
+
+
+create table fezAvaliacao(
+idAlunoAvaliado integer not null,
+idAlunoAvaliador integer not null,
+primary key (idAlunoAvaliado, idAlunoAvaliador),
+foreign key (idAlunoAvaliado) references aluno(id),
+foreign key (idAlunoAvaliador) references aluno(id)
+)
+
+
+insert into fezAvaliacao(idAlunoAvaliado,idAlunoAvaliador)
+values (1,2)
+
+
+
+SELECT AVG(nota) FROM avaliacao where idalunoavaliado = 7
+
+
+
+create table professor(
+id serial, 
+nome varchar(30) not null,
+usuario varchar(10) not null,
+senha varchar(10) not null,
+primary key(id));
+
+insert into professor (nome, usuario,senha) values ('Girafales', 'gira','123')
